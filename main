@@ -1,0 +1,30 @@
+#henrique vera ramirez
+#definition de variable et fonction
+import random
+nbr_vie = 20
+lost = 0
+win  = 0
+combat = 0
+nmbr_adversaire = 0
+# on set la diffculter des ennemies
+niveau_adversaire = random.randint(1, 5)
+
+#on commnce le jeux
+
+print("vous tombez face a face avec un adversaire de diffuclte:", niveau_adversaire)
+stats = combat
+        nmbr_adversaire
+        win
+        lost
+        nbr_vie
+
+menu = int(input("Que voulez vous faire? \n\t 1- combattre cet adversaire \n\t 2- contourner cet advesaire et aller ouvrir une autre porte \n\t 3- afficher les regles du jeu \n\t 4- quitter la partie"))
+if menu == 1:
+     combat = +1
+     nmbr_adversaire = +1
+     de = random.randint(1,6)
+     if de >= niveau_adversaire :
+         vie = nbr_vie + de
+         win = +1
+         print(" adversaire :", nmbr_adversaire," \n force de ladversaire :",niveau_adversaire," \n niveau de vis du joueur : ", vie," \n nombre de combat :",combat," \n nombre de victoire : ",win,"&",lost,"\n lance de de:",de,")
+
