@@ -1,30 +1,66 @@
-#henrique vera ramirez
-#definition de variable et fonction
+#Henrique vera ramirez
+#TP3
 import random
+#on definit les variables quon a besoin
 nbr_vie = 20
 lost = 0
-win  = 0
+win = 0
 combat = 0
-nmbr_adversaire = 0
-# on set la diffculter des ennemies
-niveau_adversaire = random.randint(1, 5)
+playing = nbr_vie > 0
+while playing:
+    #on adjust le niveau de l'adversaire en le mettant random de 1 a 5
+    niveau_adversaire = random.randint(1, 5)
+    print("vous tombez face a face avec un adversaire de difficulte:", niveau_adversaire)
+    menu = int(input("Que voulez vous faire? \n\t 1- combattre cet adversaire \n\t 2- contourner cet advesaire et aller ouvrir une autre porte \n\t 3- afficher les regles du jeu \n\t 4- quitter la partie"))
+    #dependant de ce que le joueur decide, il y a des resultats different,#1 est de combatre comme ci-dissous.
+    if menu == 1:
+        combat += 1
+        score_de = random.randint(1, 6)
+        if score_de > niveau_adversaire:
+            win += 1
+            nbr_vie = nbr_vie + niveau_adversaire
+            print("force de ladversaire :", niveau_adversaire, " \n niveau de vie du joueur : ", nbr_vie,
+                  " \n nombre de combat :", combat, " \n nombre de victoire et de defaite : ", win, "&", lost,
+                  "\n lance de de:", score_de)
+#ici cest si lon perd le matchup contre le monstre
+        else:
+            lost += 1
+            nbr_vie = nbr_vie - niveau_adversaire
+            print(" \n force de ladversaire :", niveau_adversaire, " \n niveau de vie du joueur : ", nbr_vie,
+                  " \n nombre de combat :", combat, " \n nombre de victoire : ", win, "&", lost, "\n lance de de:",
+                  score_de)
 
-#on commnce le jeux
+            if nbr_vie < 0:
+                print(" vouz avez vaincu ", win, " monstre(s).")
 
-print("vous tombez face a face avec un adversaire de diffuclte:", niveau_adversaire)
-stats = combat
-        nmbr_adversaire
-        win
-        lost
-        nbr_vie
+                restart = str(input(" vous n'avez plus de vie. voulez vous recommencer? oui ou non?"))
+                if restart == "non":
+                    print("d'accord au revoir")
+                    playing = False
+                else:
+                    print("veuilleux recommencer le jeu.")
 
-menu = int(input("Que voulez vous faire? \n\t 1- combattre cet adversaire \n\t 2- contourner cet advesaire et aller ouvrir une autre porte \n\t 3- afficher les regles du jeu \n\t 4- quitter la partie"))
-if menu == 1:
-     combat = +1
-     nmbr_adversaire = +1
-     de = random.randint(1,6)
-     if de >= niveau_adversaire :
-         vie = nbr_vie + de
-         win = +1
-         print(" adversaire :", nmbr_adversaire," \n force de ladversaire :",niveau_adversaire," \n niveau de vis du joueur : ", vie," \n nombre de combat :",combat," \n nombre de victoire : ",win,"&",lost,"\n lance de de:",de,")
+            else:
+                print("il vous reste:", nbr_vie, "vie")
+    #2 = a contourner le monstre car il est trop puissant, cela donne en resultats -1 points
+    if menu == 2:
+        nbr_vie -= 1
+        print(" il y'a une penalite de 1 points")
+        print("il vous reste:", nbr_vie, " de vie")
+        if nbr_vie < 0:
+            print(" vouz avez vaincu ", win, " monstre(s).")
 
+            restart = str(input(" vous n'avez plus de vie. voulez vous recommencer? oui ou non?"))
+            if restart == "non":
+                print("d'accord au revoir")
+                playing = False
+            else:
+                print("parfait")
+    #pretty straightforward, cela est juste les regles du jeu
+    if menu == 3:
+        print(
+            " voici les regles du jeu: \nPour réussir un combat, il faut que la valeur du dé lancé soit supérieure à la force de l’adversaire.  Dans ce cas, le niveau de vie de l’usager est augmenté de la force de l’adversaire. Une défaite a lieu lorsque la valeur du dé lancé par l’usager est inférieure ou égale à la force de l’adversaire. Dans ce cas, le niveau de vie de l’usager est diminué de la force de l’adversaire. La partie se termine lorsque les points de vie de l’usager tombent sous 0. L’usager peut combattre ou éviter chaque adversaire, dans le cas de l’évitement, il y a une pénalité de 1 point de vie.\nvous tombez face a face avec un adversaire de difficulte:", niveau_adversaire )
+# si le joueur est bored ou veut arreter ils peuvent arreter sil veulent
+    if menu == 4:
+        print("vous avez choisi de quitter la partie: \nmerci et au revoir")
+        playing = False
